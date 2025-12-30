@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bljd4ulb6xe4j"]
+
+[ext_resource type="CompositorEffect" uid="uid://dmpyjrurwxkeh" path="res://new_compositor_effect.tres" id="1_x16oa"]
+
+[sub_resource type="Environment" id="Environment_l7g0s"]
+background_mode = 1
+background_color = Color(0.5031758, 0.6608564, 0.6318937, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_rnpve"]
+
+[sub_resource type="GDScript" id="GDScript_p20re"]
+
+[sub_resource type="Compositor" id="Compositor_rnpve"]
+resource_local_to_scene = true
+compositor_effects = Array[CompositorEffect]([ExtResource("1_x16oa")])
+script = SubResource("GDScript_p20re")
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_l7g0s")
+camera_attributes = SubResource("CameraAttributesPractical_rnpve")
+compositor = SubResource("Compositor_rnpve")

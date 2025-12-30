@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqg8pxadesjhx"]
+
+[ext_resource type="CompositorEffect" uid="uid://dmpyjrurwxkeh" path="res://new_compositor_effect.tres" id="1_rnpve"]
+[ext_resource type="PackedScene" uid="uid://bljd4ulb6xe4j" path="res://world_environment.tscn" id="2_p20re"]
+
+[sub_resource type="GDScript" id="GDScript_p20re"]
+
+[sub_resource type="Compositor" id="Compositor_m2sqd"]
+resource_local_to_scene = true
+compositor_effects = Array[CompositorEffect]([ExtResource("1_rnpve")])
+script = SubResource("GDScript_p20re")
+
+[sub_resource type="Environment" id="Environment_p20re"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_m2sqd"]
+
+[sub_resource type="Compositor" id="Compositor_p20re"]
+compositor_effects = Array[CompositorEffect]([ExtResource("1_rnpve")])
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_p20re")]
+compositor = SubResource("Compositor_m2sqd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_p20re")
+attributes = SubResource("CameraAttributesPractical_m2sqd")
+compositor = SubResource("Compositor_p20re")
