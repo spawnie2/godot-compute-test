@@ -53,6 +53,12 @@ func _render_callback(p_effect_callback_type, p_render_data):
 			var y_groups = (size.y - 1) / 8 + 1
 			var z_groups = 1
 			
+			var push_constant: PackedFloat32Array = PackedFloat32Array()
+			push_constant.push_back(size.x)
+			push_constant.push_back(size.y)
+			push_constant.push_back(0.0)
+			push_constant.push_back(0.0)
+			
 			if (!shader.is_valid()):
 				return false;
 
@@ -68,7 +74,7 @@ func _render_callback(p_effect_callback_type, p_render_data):
 				var compute_list := renderingDevice.compute_list_begin()
 				renderingDevice.compute_list_bind_compute_pipeline(compute_list, pipeline)
 				renderingDevice.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
-				
+				renderingDevice.compute_list_set_push_constant(compute_list, push_constant.to_byte_array(), push_constant.size() * 4)
 				renderingDevice.compute_list_dispatch(compute_list, x_groups, y_groups, z_groups)
 				renderingDevice.compute_list_end()
 					 
